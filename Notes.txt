@@ -1,0 +1,10 @@
+1) Installed Xcode 8 beta 6
+2) Created new project (single view application)
+3) Created Podfile with SwiftyDropbox dependency
+4) Ran pod install
+5) Open generated workspace in xcode-beta
+6) Asked to convert to swift 2.3 or 3.0 -
+   swiftlydropbox is not 3.0 ready it also depends on alamofire
+   alamofire has a beta that supports 3.0
+   => decided to fork/submodule swiftlydropbox to have it use the beta alamofire and to support 3.0
+

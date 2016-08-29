@@ -1,0 +1,3 @@
+[submodule "external/SwiftyDropbox"]
+	path = external/SwiftyDropbox
+	url = git@github.com:wmathurin/SwiftyDropbox

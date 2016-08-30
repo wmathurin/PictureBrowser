@@ -26,3 +26,8 @@
 20) Opened generated workspace in xcode
     Compilations issues
     Upgrading xcode from 7.1.1 to 7.3.1
+21) It compiles!
+22) Created app in dropbox app console https://www.dropbox.com/developers/apps
+23) Added Dropbox.setupWithAppKey("APP_KEY") in app delegate
+24) Added button in ViewController with handler doing Dropbox.authorizeFromController(self),
+25) Added URL scheme in Info.plist and URL handler in app delegate / also added a couple of entries under LSApplicationQueriesSchemes

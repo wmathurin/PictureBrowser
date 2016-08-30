@@ -15,3 +15,5 @@
 13) Updated PictureBrowser podfile to get Alamofire from git
 14) Ran pod update
 --- commit
+15) Re-opened workspace in xcode-beta and ran conversion to swift 3.0
+16) Fixed compilation issues in SwiftyDropbox (Editor->Fix all in scope proved handy)

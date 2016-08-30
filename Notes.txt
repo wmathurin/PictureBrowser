@@ -1,0 +1,28 @@
+1)  Installed Xcode 8 beta 6
+2)  Created new project (single view application)
+3)  Created Podfile with SwiftyDropbox dependency
+4)  Ran pod install
+5)  Opened generated workspace in xcode-beta
+6)  Asked to convert to swift 2.3 or 3.0 -> but SwiftyDropbox is not swift3 ready and depends on older version of Alamofire which is not swift3 ready either
+--- commit
+7)  Forked SwiftyDropbox
+8)  Added submodule in PictureBrowser
+9)  Updated PictureBrowser to pull SwiftyDropbox from submodule
+10) Ran pod update
+--- commit
+11) Created branch in fork of SwiftyDropbox to support swift 3.0
+12) Changed SwiftyDropbox podspec to depend on alamofire 4.0.0-beta.1
+13) Updated PictureBrowser podfile to get Alamofire from git
+14) Ran pod update
+--- commit
+15) Re-opened workspace in xcode-beta and ran conversion to swift 3.0
+16) Fixed compilation issues in SwiftyDropbox (Editor->Fix all in scope proved handy)
+--- commit(s)
+    Too many issues (1000+)
+    RESTART
+17) Created new project (single view application)
+18) Created Podfile with SwiftyDropbox dependency
+19) Ran pod install
+20) Opened generated workspace in xcode
+    Compilations issues
+    Upgrading xcode from 7.1.1 to 7.3.1

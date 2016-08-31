@@ -9,36 +9,72 @@
 import UIKit
 import SwiftyDropbox
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        
-        if let client = Dropbox.authorizedClient {
-            
-            // Get the current user's account info
-            client.users.getCurrentAccount().response { response, error in
-                if let account = response {
-                    print("Hello \(account.name.givenName)")
-                } else {
-                    print(error!)
-                }
+    var history : [String] = []
+    var pathToFiles : [String: [Files.Metadata]] = [:];
+
+    var currentPath:String{
+        set {
+            if history.last == nil || history.last! != newValue {
+                history.append(newValue)
             }
-            
-            // List folder
-            client.files.listFolder(path: "").response { response, error in
+        }
+        get {
+            return history.last != nil ? history.last! : ""
+        }
+    }
+    
+    var files:[Files.Metadata] {
+        get {
+            if let files = self.pathToFiles[self.currentPath] {
+                return files
+            }
+            else {
+                return [];
+            }
+        }
+    }
+    
+    func gotoPath(path:String) {
+        if self.pathToFiles[path] != nil {
+            self.currentPath = path;
+            self.refreshTable();
+        }
+        else {
+            self.fetchFiles(path, onComplete:{ () -> Void in
+                self.gotoPath(path)
+            })
+        }
+    }
+
+    // Data fetching
+    func fetchFiles(path:String, onComplete:()->Void) {
+        if let client = Dropbox.authorizedClient {
+            let req = client.files.listFolder(path: path, recursive: false, includeMediaInfo: true, includeDeleted: false, includeHasExplicitSharedMembers: false)
+            req.response { response, error in
                 if let result = response {
-                    print("Folder contents:")
-                    for entry in result.entries {
-                        print(entry.name)
-                    }
+                    self.pathToFiles[path] = result.entries;
+                    onComplete()
                 } else {
                     print(error!)
                 }
             }
         }
+    }
+    
+    // Table refresh
+    func refreshTable() {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView.reloadData()
+        })
+    }
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.gotoPath("");
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,6 +82,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // Link button handler
     @IBAction func linkButtonClicked(sender: AnyObject) {
         if (Dropbox.authorizedClient == nil) {
             Dropbox.authorizeFromController(self)
@@ -53,6 +90,28 @@ class ViewController: UIViewController {
             print("User is already authorized!")
         }
     }
+    
+    // Back button handler
+    @IBAction func backButtonClicked(sender: AnyObject) {
+        self.history.removeLast()
+        self.refreshTable()
+    }
 
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.files.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath:indexPath) as! CustomCell
+        cell.title.text = self.files[indexPath.row].name
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let file = self.files[indexPath.row]
+        if file is Files.FolderMetadata {
+            self.gotoPath(file.pathLower!)
+        }
+    }
 }
 

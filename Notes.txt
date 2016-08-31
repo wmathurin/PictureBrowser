@@ -31,3 +31,8 @@
 23) Added Dropbox.setupWithAppKey("APP_KEY") in app delegate
 24) Added button in ViewController with handler doing Dropbox.authorizeFromController(self),
 25) Added URL scheme in Info.plist and URL handler in app delegate / also added a couple of entries under LSApplicationQueriesSchemes
+26) Added basic code to dump folder list to console
+--- commit
+27) Adding table view with table cell - showing list of files from dropbox 
+28) Navigating on click (for folders) - adding back button
+--- commit

@@ -8,14 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		4F122B021D762E06000E017D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F122B011D762E06000E017D /* AppDelegate.swift */; };
-		4F122B041D762E06000E017D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F122B031D762E06000E017D /* ViewController.swift */; };
+		4F122B041D762E06000E017D /* FileListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F122B031D762E06000E017D /* FileListController.swift */; };
 		4F122B071D762E06000E017D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F122B051D762E06000E017D /* Main.storyboard */; };
 		4F122B0A1D762E06000E017D /* PictureBrowser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F122B081D762E06000E017D /* PictureBrowser.xcdatamodeld */; };
 		4F122B0C1D762E06000E017D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F122B0B1D762E06000E017D /* Assets.xcassets */; };
 		4F122B0F1D762E06000E017D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F122B0D1D762E06000E017D /* LaunchScreen.storyboard */; };
 		4F122B1A1D762E06000E017D /* PictureBrowserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F122B191D762E06000E017D /* PictureBrowserTests.swift */; };
 		4F122B251D762E06000E017D /* PictureBrowserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F122B241D762E06000E017D /* PictureBrowserUITests.swift */; };
-		4FB924551D7644600011BC3D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB924541D7644600011BC3D /* CustomCell.swift */; };
+		4FA91EDD1D77A24B0040271E /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA91EDC1D77A24B0040271E /* ImageManager.swift */; };
+		4FB924551D7644600011BC3D /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB924541D7644600011BC3D /* FileCell.swift */; };
 		D3A824BBE95F0B1F3FCB57B6 /* Pods_PictureBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B47A3EC5B86E5761A295105 /* Pods_PictureBrowser.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +42,7 @@
 		38FFA55209E62FCC6AE840F8 /* Pods-PictureBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureBrowser.release.xcconfig"; path = "Pods/Target Support Files/Pods-PictureBrowser/Pods-PictureBrowser.release.xcconfig"; sourceTree = "<group>"; };
 		4F122AFE1D762E06000E017D /* PictureBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F122B011D762E06000E017D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4F122B031D762E06000E017D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4F122B031D762E06000E017D /* FileListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListController.swift; sourceTree = "<group>"; };
 		4F122B061D762E06000E017D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F122B091D762E06000E017D /* PictureBrowser.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PictureBrowser.xcdatamodel; sourceTree = "<group>"; };
 		4F122B0B1D762E06000E017D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,7 +54,8 @@
 		4F122B201D762E06000E017D /* PictureBrowserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PictureBrowserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F122B241D762E06000E017D /* PictureBrowserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureBrowserUITests.swift; sourceTree = "<group>"; };
 		4F122B261D762E06000E017D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4FB924541D7644600011BC3D /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		4FA91EDC1D77A24B0040271E /* ImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		4FB924541D7644600011BC3D /* FileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
 		F2F58F65B1BD1614A5DDA32C /* Pods-PictureBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureBrowser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PictureBrowser/Pods-PictureBrowser.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,12 +112,13 @@
 			children = (
 				4F122B011D762E06000E017D /* AppDelegate.swift */,
 				4F122B051D762E06000E017D /* Main.storyboard */,
-				4F122B031D762E06000E017D /* ViewController.swift */,
+				4F122B031D762E06000E017D /* FileListController.swift */,
 				4F122B0B1D762E06000E017D /* Assets.xcassets */,
 				4F122B0D1D762E06000E017D /* LaunchScreen.storyboard */,
 				4F122B101D762E06000E017D /* Info.plist */,
 				4F122B081D762E06000E017D /* PictureBrowser.xcdatamodeld */,
-				4FB924541D7644600011BC3D /* CustomCell.swift */,
+				4FB924541D7644600011BC3D /* FileCell.swift */,
+				4FA91EDC1D77A24B0040271E /* ImageManager.swift */,
 			);
 			path = PictureBrowser;
 			sourceTree = "<group>";
@@ -337,9 +340,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F122B041D762E06000E017D /* ViewController.swift in Sources */,
+				4FA91EDD1D77A24B0040271E /* ImageManager.swift in Sources */,
+				4F122B041D762E06000E017D /* FileListController.swift in Sources */,
 				4F122B0A1D762E06000E017D /* PictureBrowser.xcdatamodeld in Sources */,
-				4FB924551D7644600011BC3D /* CustomCell.swift in Sources */,
+				4FB924551D7644600011BC3D /* FileCell.swift in Sources */,
 				4F122B021D762E06000E017D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

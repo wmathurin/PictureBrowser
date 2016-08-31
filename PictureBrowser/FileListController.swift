@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  FileListContoller.swift
 //  PictureBrowser
 //
 //  Created by Wolfgang Mathurin on 8/30/16.
@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyDropbox
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FileListController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -66,8 +66,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "drill"
         {
-            if let destinationVC = segue.destinationViewController as? ViewController, cell = sender as? CustomCell {
-                destinationVC.currentPath = cell.path
+            if let destinationVC = segue.destinationViewController as? FileListController, cell = sender as? FileCell {
+                destinationVC.currentPath = cell.path!
             }
         }
     }
@@ -76,7 +76,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if identifier == "drill"
         {
-            if let cell = sender as? CustomCell  {
+            if let cell = sender as? FileCell  {
                 return !cell.isFile
             }
         }
@@ -88,11 +88,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath:indexPath) as! CustomCell
-        let file = self.files[indexPath.row]
-        cell.title.text = file.name
-        cell.path = file.pathLower!
-        cell.isFile = file is Files.FileMetadata
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath:indexPath) as! FileCell
+        cell.file = self.files[indexPath.row]
         return cell
     }
 }

@@ -12,6 +12,9 @@ class CustomCell: UITableViewCell {
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var title: UILabel!
     
+    var path = ""
+    var isFile = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,8 +22,6 @@ class CustomCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

@@ -10,91 +10,77 @@ import UIKit
 import SwiftyDropbox
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    var history : [String] = []
-    var pathToFiles : [String: [Files.Metadata]] = [:];
-
-    var currentPath:String{
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var currentPath = ""
+    
+    private var _files : [Files.Metadata] = []
+    var files : [Files.Metadata] {
         set {
-            if history.last == nil || history.last! != newValue {
-                history.append(newValue)
-            }
+            self._files = newValue;
+            self.refreshTable()
         }
         get {
-            return history.last != nil ? history.last! : ""
-        }
-    }
-    
-    var files:[Files.Metadata] {
-        get {
-            if let files = self.pathToFiles[self.currentPath] {
-                return files
-            }
-            else {
-                return [];
-            }
-        }
-    }
-    
-    func gotoPath(path:String) {
-        if self.pathToFiles[path] != nil {
-            self.currentPath = path;
-            self.refreshTable();
-        }
-        else {
-            self.fetchFiles(path, onComplete:{ () -> Void in
-                self.gotoPath(path)
-            })
+            return _files
         }
     }
 
-    // Data fetching
-    func fetchFiles(path:String, onComplete:()->Void) {
-        if let client = Dropbox.authorizedClient {
-            let req = client.files.listFolder(path: path, recursive: false, includeMediaInfo: true, includeDeleted: false, includeHasExplicitSharedMembers: false)
-            req.response { response, error in
-                if let result = response {
-                    self.pathToFiles[path] = result.entries;
-                    onComplete()
-                } else {
-                    print(error!)
-                }
-            }
-        }
-    }
-    
-    // Table refresh
     func refreshTable() {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.tableView.reloadData()
         })
     }
     
-    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.gotoPath("");
+
+        if let client = Dropbox.authorizedClient {
+            let req = client.files.listFolder(path: self.currentPath, recursive: false, includeMediaInfo: true, includeDeleted: false, includeHasExplicitSharedMembers: false)
+            req.response { response, error in
+                if let result = response {
+                    self.files = result.entries
+                } else {
+                    print(error!)
+                }
+            }
+        }
+        else {
+            Dropbox.authorizeFromController(self)
+        }
+    
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // Link button handler
-    @IBAction func linkButtonClicked(sender: AnyObject) {
-        if (Dropbox.authorizedClient == nil) {
-            Dropbox.authorizeFromController(self)
-        } else {
-            print("User is already authorized!")
-        }
-    }
     
     // Back button handler
     @IBAction func backButtonClicked(sender: AnyObject) {
-        self.history.removeLast()
-        self.refreshTable()
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    // Segue for cell click
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "drill"
+        {
+            if let destinationVC = segue.destinationViewController as? ViewController, cell = sender as? CustomCell {
+                destinationVC.currentPath = cell.path
+            }
+        }
+    }
+    
+    // 
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == "drill"
+        {
+            if let cell = sender as? CustomCell  {
+                return !cell.isFile
+            }
+        }
+        return false
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,15 +89,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath:indexPath) as! CustomCell
-        cell.title.text = self.files[indexPath.row].name
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let file = self.files[indexPath.row]
-        if file is Files.FolderMetadata {
-            self.gotoPath(file.pathLower!)
-        }
+        cell.title.text = file.name
+        cell.path = file.pathLower!
+        cell.isFile = file is Files.FileMetadata
+        return cell
     }
 }
 

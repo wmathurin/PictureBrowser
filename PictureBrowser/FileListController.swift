@@ -35,21 +35,14 @@ class FileListController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let client = Dropbox.authorizedClient {
-            let req = client.files.listFolder(path: self.currentPath, recursive: false, includeMediaInfo: true, includeDeleted: false, includeHasExplicitSharedMembers: false)
-            req.response { response, error in
-                if let result = response {
-                    self.files = result.entries
-                } else {
-                    print(error!)
-                }
-            }
-        }
-        else {
+        if Dropbox.authorizedClient == nil {
             Dropbox.authorizeFromController(self)
         }
-    
+        else {
+            FileListManager.sharedInstance.fetch(self.currentPath, handler: { (files) in
+                self.files = files
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,7 +65,7 @@ class FileListController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // 
+    // Only allow click on files
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if identifier == "drill"
         {

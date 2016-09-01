@@ -16,6 +16,7 @@
 		4F122B1A1D762E06000E017D /* PictureBrowserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F122B191D762E06000E017D /* PictureBrowserTests.swift */; };
 		4F122B251D762E06000E017D /* PictureBrowserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F122B241D762E06000E017D /* PictureBrowserUITests.swift */; };
 		4FA91EDD1D77A24B0040271E /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA91EDC1D77A24B0040271E /* ImageManager.swift */; };
+		4FA91EDF1D77A9BE0040271E /* FileListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA91EDE1D77A9BE0040271E /* FileListManager.swift */; };
 		4FB924551D7644600011BC3D /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB924541D7644600011BC3D /* FileCell.swift */; };
 		D3A824BBE95F0B1F3FCB57B6 /* Pods_PictureBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B47A3EC5B86E5761A295105 /* Pods_PictureBrowser.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 		4F122B241D762E06000E017D /* PictureBrowserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureBrowserUITests.swift; sourceTree = "<group>"; };
 		4F122B261D762E06000E017D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FA91EDC1D77A24B0040271E /* ImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		4FA91EDE1D77A9BE0040271E /* FileListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListManager.swift; sourceTree = "<group>"; };
 		4FB924541D7644600011BC3D /* FileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
 		F2F58F65B1BD1614A5DDA32C /* Pods-PictureBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureBrowser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PictureBrowser/Pods-PictureBrowser.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +121,7 @@
 				4F122B081D762E06000E017D /* PictureBrowser.xcdatamodeld */,
 				4FB924541D7644600011BC3D /* FileCell.swift */,
 				4FA91EDC1D77A24B0040271E /* ImageManager.swift */,
+				4FA91EDE1D77A9BE0040271E /* FileListManager.swift */,
 			);
 			path = PictureBrowser;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FA91EDD1D77A24B0040271E /* ImageManager.swift in Sources */,
+				4FA91EDF1D77A9BE0040271E /* FileListManager.swift in Sources */,
 				4F122B041D762E06000E017D /* FileListController.swift in Sources */,
 				4F122B0A1D762E06000E017D /* PictureBrowser.xcdatamodeld in Sources */,
 				4FB924551D7644600011BC3D /* FileCell.swift in Sources */,

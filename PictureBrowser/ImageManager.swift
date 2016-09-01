@@ -20,10 +20,6 @@ class ImageManager {
     
     private var _cache : [String:UIImage] = [:]
     
-    private func cache(key:String, value:UIImage) {
-        _cache[key] = value
-    }
-    
     func fetch(path:String, handler:(UIImage) -> ()) {
         if let image = _cache[path] {
             handler(image)

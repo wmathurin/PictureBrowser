@@ -18,10 +18,14 @@ class FileCell: UITableViewCell {
         set {
             self._file = newValue
             self.title.text = newValue?.name
+            self.thumbnail.image = nil
             
             if self.isFile {
-                ImageManager.sharedInstance.fetch(self.path!, handler:{ image in
-                    self.thumbnail.image = image
+                let pathFetched = self.path!
+                ImageManager.sharedInstance.fetch(pathFetched, handler:{ image in
+                    if self.path == pathFetched {
+                        self.thumbnail.image = image
+                    }
                 })
             }
         }
